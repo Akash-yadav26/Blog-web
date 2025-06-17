@@ -2,8 +2,7 @@ folder structure--
 
 Blog-web/
 ├── middlewares/            
-├── models/                 
-├── node_modules/           
+├── models/                         
 ├── public/                 
 ├── routes/                 
 ├── services/             
