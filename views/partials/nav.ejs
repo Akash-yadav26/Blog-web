@@ -1,34 +1,54 @@
-<nav class="navbar bg-body-tertiary" data-bs-theme="dark">
-    <form class="container-fluid justify-content-start">
-      <!-- Main button with right margin -->
-      <button class="btn btn-outline-success me-3" type="button">Blogify</button>
-      
-      <!-- Smaller button with right margin -->
-      <button class="btn btn-sm btn-outline-secondary me-3" type="button">Home</button>
-      <% if (locals.user) { %>
-        <button class="btn btn-sm btn-outline-secondary me-3" type="button" ><a class="dropdown-item" href="/blog/add-new" >Add Blog</a></button>
-         <div class="dropdown me-3">
-        <button class="btn btn-outline-primary dropdown-toggle" type="button" id="navbarDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-          Akash yadav
-        </button>
-        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <li><a class="dropdown-item" href="/user/logout">Logout</a></li>
-        </ul>
-      </div>
-      
-      <% } else {%>
- <button class="btn btn-sm btn-outline-secondary me-3" type="button" ><a class="dropdown-item" href="/user/signin" >Signin</a></button>
-  <button class="btn btn-sm btn-outline-secondary me-3" type="button" ><a class="dropdown-item" href="/user/signup" >Create Account</a></button>
-        <% } %>
-      
-     
-    </form>
-  </nav>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm">
+  <div class="container-fluid">
+    <a class="navbar-brand fw-bold" href="/">Blogify</a>
 
-  <% if (locals.error) { %>
-    <div class="container mt-4">
-    <div class="alert alert-danger" role="alert">
-     <%= locals.error %>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent"
+      aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarContent">
+      <ul class="navbar-nav ms-auto d-flex align-items-center">
+
+        <!-- Home Link -->
+        <li class="nav-item me-2">
+          <a class="btn btn-sm btn-outline-light" href="/">Home</a>
+        </li>
+
+        <% if (locals.user) { %>
+          <!-- Add Blog -->
+          <li class="nav-item me-2">
+            <a class="btn btn-sm btn-outline-light" href="/blog/add-new">Add Blog</a>
+          </li>
+
+          <!-- Dropdown -->
+          <li class="nav-item dropdown me-2">
+            <a class="btn btn-sm btn-primary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <%= locals.user.fullName || 'Account' %>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end">
+              <li><a class="dropdown-item" href="/user/logout">Logout</a></li>
+            </ul>
+          </li>
+        <% } else { %>
+          <!-- Signin -->
+          <li class="nav-item me-2">
+            <a class="btn btn-sm btn-outline-light" href="/user/signin">Sign In</a>
+          </li>
+          <!-- Signup -->
+          <li class="nav-item me-2">
+            <a class="btn btn-sm btn-outline-light" href="/user/signup">Create Account</a>
+          </li>
+        <% } %>
+      </ul>
     </div>
   </div>
-  <% } %>
+</nav>
+
+<% if (locals.error) { %>
+  <div class="container mt-4">
+    <div class="alert alert-danger shadow-sm" role="alert">
+      <%= locals.error %>
+    </div>
+  </div>
+<% } %>
